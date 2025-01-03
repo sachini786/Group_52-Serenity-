@@ -28,6 +28,4 @@ public class LoginStepDefinitions {
     public void shouldRedirectToDashboard() {
         assertThat(dashboard.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
     }
-
-
 }
