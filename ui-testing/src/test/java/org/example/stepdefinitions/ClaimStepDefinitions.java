@@ -19,7 +19,7 @@ public class ClaimStepDefinitions {
     @Given("user is in dashboard")
     public void userIsInDashboard() {
         navigateAction.toOrangeHRMLoginPage();
-        loginAction.loginWithUsernameAndPassword("Admin","admin123");
+        loginAction.loginWithUsernameAndPassword("Admin", "admin123");
         assertThat(commonAction.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
     }
 
@@ -42,7 +42,7 @@ public class ClaimStepDefinitions {
     }
 
     @When("user create new claim request with employee name {string},event {string}, currency {string}")
-    public void userCreateNewClaimRequest(String employeeName,String event,String currency) {
+    public void userCreateNewClaimRequest(String employeeName, String event, String currency) {
         claimAction.selectEmployeeName(employeeName);
         claimAction.selectEvent(event);
         claimAction.selectCurrency(currency);
@@ -57,7 +57,7 @@ public class ClaimStepDefinitions {
     }
 
     @When("user search for claim with employee name {string},event {string} and status {string}")
-    public void userSearchForClaimWithEmployeeNameEventCurrency(String employeeName,String event ,String status) {
+    public void userSearchForClaimWithEmployeeNameEventCurrency(String employeeName, String event, String status) {
         claimAction.selectEmployeeName(employeeName);
         claimAction.selectEventToSearch(event);
         claimAction.selectStatusToSearch(status);
@@ -65,8 +65,8 @@ public class ClaimStepDefinitions {
     }
 
     @Then("user expect to see claim with name {string},event {string}, currency {string} and status {string}")
-    public void userExpectToSeeClaimWithNameEvent(String name,String event,String currency,String status) {
+    public void userExpectToSeeClaimWithNameEvent(String name, String event, String currency, String status) {
         commonAction.pause(1000);
-        claimAction.validateIfTableHasClaim(name,event,currency,status);
+        claimAction.validateIfTableHasClaim(name, event, currency, status);
     }
 }

@@ -6,9 +6,9 @@ Feature: Get All Books
     Then user expect response status to be <statusCode>
     Examples:
       | username | password | statusCode |
-      |    admin | password | 200        |
-      |     user | password | 200        |
-      |     test | test     | 401        |
+      | admin    | password | 200        |
+      | user     | password | 200        |
+      | test     | test     | 401        |
 
   Scenario: Get all books when no book exist
     Given user want to get all books when there are no books available
