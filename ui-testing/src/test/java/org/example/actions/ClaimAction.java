@@ -3,6 +3,7 @@ package org.example.actions;
 import net.serenitybdd.core.pages.ListOfWebElementFacades;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Step;
+import org.example.pageobjects.ClaimPageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,10 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ClaimAction extends UIInteractionSteps {
     WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+    ClaimPageObject claimPageObject;
 
     @Step("click assign claim")
     public void clickAssignClaim() {
-        $(By.xpath("//button[contains(., 'Assign Claim')]")).click();
+        claimPageObject.clickAssignClaim();
     }
 
     @Step("select employee name")
