@@ -85,4 +85,18 @@ public class EdgeCasesStepDefinitions {
                 .when()
                 .put("/books/"+createBookId);
     }
+
+    @Given("user need to authenticate using {string} and {string}")
+    public void UsernameAndPassword(String username,String password) {
+        requestSpecification = SerenityRest.given()
+                .baseUri(BASE_URL)
+                .auth()
+                .basic(username, password);
+
+    }
+    @When("user send a DELETE request to delete a book with invalid ID format {string}")
+    public void sendRequestToDeleteBooksWithInvalidID(String invalidFormatBookId) {
+        response = requestSpecification.when()
+                .delete("api/books/" + invalidFormatBookId);
+    }
 }
