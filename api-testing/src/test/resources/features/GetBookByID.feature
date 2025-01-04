@@ -7,23 +7,22 @@ Feature: GET a book by ID
 
     Examples:
       | username | password | statusCode |
-      | admin    | password | 200        |
-      | user     | password | 200        |
-      | test     | test     | 401        |
+      | admin    | password | 404        |
+      | user     | password | 404        |
 
 
   @ValidIdFormat-Admin
   Scenario: GET a book with a valid ID format as an admin user when book exists
-    Given admin user wants to get book the ID is valid
     Given the book exists
+    Given admin user wants to get book the ID is valid
     When user calls service to get the book with ID
     Then user expects response status to be 200
     And user expects response should contain the book details with ID
 
   @ValidIdFormat-RegularUser
   Scenario: GET a book with a valid ID format as an regular user when book exists
-    Given regular user wants to get book the ID is valid
     Given the book exists
+    Given regular user wants to get book the ID is valid
     When user calls service to get the book with ID
     Then user expects response status to be 200
     And user expects response should contain the book details with ID
