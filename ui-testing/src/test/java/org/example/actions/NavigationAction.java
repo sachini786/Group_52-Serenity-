@@ -2,12 +2,17 @@ package org.example.actions;
 
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Step;
+import org.example.pageobjects.ClaimPageObject;
+import org.example.pageobjects.LoginPageObject;
 import org.openqa.selenium.By;
 
 public class NavigationAction extends UIInteractionSteps {
+
+    LoginPageObject loginPageObject;
+    ClaimPageObject claimPageObject;
     @Step("Navigate to the login page")
     public void toOrangeHRMLoginPage() {
-        openUrl("https://opensource-demo.orangehrmlive.com/");
+        loginPageObject.toOrangeHRMLoginPage();
     }
 
     @Step("Navigate to Time Page")
@@ -22,7 +27,7 @@ public class NavigationAction extends UIInteractionSteps {
 
     @Step("Navigate to the Claim page")
     public void toOrangeHRMClaimPage() {
-        $(By.xpath("//a[@href='/web/index.php/claim/viewClaimModule']")).click();
+        claimPageObject.toOrangeHRMClaimPage();
     }
 
     @Step("Navigate to the Recruitment page")

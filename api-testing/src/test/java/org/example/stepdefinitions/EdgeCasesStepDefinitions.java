@@ -31,26 +31,27 @@ public class EdgeCasesStepDefinitions {
     }
 
     @Then("the edge case response status should be {int}")
-    public void theEdgeCaseResponseStatusShouldBeThe(int status){
-        SerenityRest.restAssuredThat(response->response.statusCode(status));
+    public void theEdgeCaseResponseStatusShouldBeThe(int status) {
+        SerenityRest.restAssuredThat(response -> response.statusCode(status));
     }
 
     @Given("user need to create a book with extra field")
     public void userNeedToCreateABookWithExtraField() {
         String requestBody = """
-            {
-                "id": 999,
-                "title": "Update Book title01"
-                "author": "rowan atkinson"
-                "registration": "ISBN0032"
-    
-            }
-            """;
+                {
+                    "id": 999,
+                    "title": "Update Book title01"
+                    "author": "rowan atkinson"
+                    "registration": "ISBN0032"
+                    
+                }
+                """;
         requestSpecification = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
                 .basic("user", "password").body(requestBody);
     }
+
     @When("user send request to create book")
     public void userSendRequestToCreateBook() {
         response = requestSpecification.given()
@@ -63,14 +64,14 @@ public class EdgeCasesStepDefinitions {
     @Given("user need to update a book with extra field")
     public void userNeedToUpdateABookWithExtraField() {
         String requestBody = """
-            {
-                "id": %d,
-                "title": "Update Book title01"
-                "author": "rowan atkinson"
-                "registration": "ISBN0032"
-    
-            }
-            """;
+                {
+                    "id": %d,
+                    "title": "Update Book title01"
+                    "author": "rowan atkinson"
+                    "registration": "ISBN0032"
+                    
+                }
+                """;
         requestSpecification = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
@@ -83,17 +84,18 @@ public class EdgeCasesStepDefinitions {
         response = requestSpecification.given()
                 .header("Content-Type", "application/json")
                 .when()
-                .put("/books/"+createBookId);
+                .put("/books/" + createBookId);
     }
 
     @Given("user need to authenticate using {string} and {string}")
-    public void UsernameAndPassword(String username,String password) {
+    public void UsernameAndPassword(String username, String password) {
         requestSpecification = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
                 .basic(username, password);
 
     }
+
     @When("user send a DELETE request to delete a book with invalid ID format {string}")
     public void sendRequestToDeleteBooksWithInvalidID(String invalidFormatBookId) {
         response = requestSpecification.when()
