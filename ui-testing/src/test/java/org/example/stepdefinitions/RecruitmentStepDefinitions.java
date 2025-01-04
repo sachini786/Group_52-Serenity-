@@ -1,7 +1,8 @@
 package org.example.stepdefinitions;
 
-import io.cucumber.java.en.*;
-import net.thucydides.core.annotations.Steps;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.example.actions.CommonAction;
 import org.example.actions.LoginAction;
 import org.example.actions.NavigationAction;
@@ -15,11 +16,18 @@ public class RecruitmentStepDefinitions {
     CommonAction commonAction;
     RecruitmentAction recruitmentAction;
 
+    private final static String USERNAME = "Admin";
+    private final static String PASSWORD = "admin123";
+    private final static String DASHBOARD = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+    private final static String VIEWCANDIDATES = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/viewCandidates";
+    private final static String ADDJOBVACANCY = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addJobVacancy";
+
+
     @Given("user is on the dashboard")
     public void userIsOnTheDashboard() {
         navigateAction.toOrangeHRMLoginPage();
-        loginAction.loginWithUsernameAndPassword("Admin","admin123");
-        assertThat(commonAction.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
+        loginAction.loginWithUsernameAndPassword(USERNAME, PASSWORD);
+        assertThat(commonAction.getUrl()).isEqualTo(DASHBOARD);
     }
 
     @When("user clicks Recruitment section in the sidebar")
@@ -29,7 +37,7 @@ public class RecruitmentStepDefinitions {
 
     @Then("user expects redirection to the Recruitment page")
     public void userExpectsRedirectionToTheRecruitmentPage() {
-        assertThat(commonAction.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/viewCandidates");
+        assertThat(commonAction.getUrl()).isEqualTo(VIEWCANDIDATES);
     }
 
     @Given("user is on the Recruitment page and clicks the Vacancies section and the Add button")
@@ -38,7 +46,7 @@ public class RecruitmentStepDefinitions {
         userClicksRecruitmentSectionInTheSidebar();
         recruitmentAction.clickVacanciesTab();
         recruitmentAction.clickAddButton();
-        assertThat(commonAction.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addJobVacancy");
+        assertThat(commonAction.getUrl()).isEqualTo(ADDJOBVACANCY);
 
     }
 
@@ -48,10 +56,12 @@ public class RecruitmentStepDefinitions {
         recruitmentAction.selectJobTitle();
         recruitmentAction.fillHiringManager();
         recruitmentAction.clickSaveButton();
+        commonAction.pause(2000);
     }
 
     @Then("user expects to see the Edit Vacancy page")
     public void userExpectsToSeeTheEditVacancyPage() {
-        recruitmentAction.verifyEditVacancyPage();
+        String regex = ".*/(\\d+)$";
+        assertThat(commonAction.getUrl()).matches(regex);
     }
 }
