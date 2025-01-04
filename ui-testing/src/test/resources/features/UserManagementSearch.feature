@@ -8,8 +8,8 @@ Scenario: Navigate to Admin page
   Scenario: Add User
     Given user is in Admin page
     When user clicking the add Button
-    When user add new user role "userrole", employee name "John Doe",Status "Enabled", username "nadun", password "password1", confirmpassword "password1"
-    Then user expect to redirected to the Admin section
+    When user add new user role "userrole", employee name "John Doe", Status "Enabled", username "kasuntha", password "password1", confirm password "password1"
+    Then user expect to be redirected to the Admin section
 
 
   Scenario: navigate to the job page
@@ -17,7 +17,7 @@ Scenario: Navigate to Admin page
     When user clicked the job icon
     Then redirecting to the job title page
     And clicking the add job button
-    Then redirecting to the  Add job page
+    Then redirecting to the Add job page
     Then fill the job title as "testing the  job title page"
     And click on the save button
 
