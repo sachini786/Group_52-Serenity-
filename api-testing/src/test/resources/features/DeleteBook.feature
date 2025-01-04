@@ -17,5 +17,7 @@ Feature: Delete book by ID
     When I send a DELETE request to delete a book with non-existing 1000
     Then Delete response status should be 404
 
-
-
+  Scenario: Delete a book with a non-existing ID as a user
+    Given user authenticate using "user" and "password"
+    When I send a DELETE request to delete a book with non-existing 2000
+    Then Delete response status should be 403
