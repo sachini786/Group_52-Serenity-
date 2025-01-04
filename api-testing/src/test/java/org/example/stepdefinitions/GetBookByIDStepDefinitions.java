@@ -59,7 +59,7 @@ public class GetBookByIDStepDefinitions {
 
     @Given("the book exists")
     public void hasBooks() {
-        userUsernameAndPassword("user","password");
+        userUsernameAndPassword("admin","password");
         final String REQUEST_BODY= """
                     {
                         "title": "Harry Potter",
@@ -76,12 +76,14 @@ public class GetBookByIDStepDefinitions {
 
     @After("@ValidIdFormat-Admin")
     public void afterBooksExistScenario1() {
+        userUsernameAndPassword("user", "password");
         requestSpecification.when()
                 .delete("/api/books/" + createBookId);
     }
 
     @After("@ValidIdFormat-RegularUser")
     public void afterBooksExistScenario2() {
+        userUsernameAndPassword("user", "password");
         requestSpecification.when()
                 .delete("/api/books/" + createBookId);
     }
