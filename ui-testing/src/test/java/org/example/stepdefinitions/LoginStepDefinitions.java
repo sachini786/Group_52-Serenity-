@@ -4,8 +4,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.actions.NavigationAction;
-import org.example.actions.CommonAction;
 import org.example.actions.LoginAction;
+import org.example.actions.CommonAction;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,6 +29,4 @@ public class LoginStepDefinitions {
     public void shouldRedirectToDashboard() {
         assertThat(dashboard.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
     }
-
-
 }
