@@ -2,7 +2,7 @@ package org.example.actions;
 
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Step;
-import pageobjects.PIMPageObject;
+import org.example.pageobjects.PIMPageObject;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
