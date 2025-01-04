@@ -53,3 +53,19 @@ jobs:
       with:
         name: api-serenity-reports
         path: api-testing/target/site/serenity
+
+    - name: Deploy Serenity Reports to GitHub Pages
+      if: success()
+      run: |
+        mkdir -p gh-pages
+        cp -r ui-testing/target/site/serenity gh-pages/ui
+        cp -r api-testing/target/site/serenity gh-pages/api
+        
+        # Initialize the gh-pages branch
+        cd gh-pages
+        git init
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add .
+        git commit -m "Deploy Serenity reports"
+        git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" master:gh-pages
