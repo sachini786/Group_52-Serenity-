@@ -1,23 +1,17 @@
 package org.example.actions;
 
-import net.thucydides.core.annotations.Step;
 import net.serenitybdd.core.steps.UIInteractionSteps;
+import net.thucydides.core.annotations.Step;
+import org.example.pageobjects.LoginPageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
 public class LoginAction extends UIInteractionSteps {
-    @Step("Login as a user '{0}'")
-    public void loginWithUsernameAndPassword(String username,String password) {
-        $(By.name("username")).sendKeys(username);
-        $(By.name("password")).sendKeys(password,Keys.ENTER);
+
+    LoginPageObject loginPageObject;
+    @Step("Login as a user")
+    public void loginWithUsernameAndPassword(String username, String password) {
+        loginPageObject.loginWithUsernameAndPassword(username,password);
     }
-
-
-//    @Step("Login as a user '{0}'")
-//    public void loggedWithUsernameAndPassword(String username,String password) {
-//        $(By.name("username")).sendKeys(username);
-//        $(By.name("password")).sendKeys(password,Keys.ENTER);
-//    }
-
 
 }
