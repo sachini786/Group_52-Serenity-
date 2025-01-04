@@ -15,7 +15,7 @@ public class DeleteBookStepDefinitions {
     private static final String BASE_URL = "http://localhost:7081/api/";
 
     @Given("user authenticate using {string} and {string}")
-    public void userUsernameAndPassword(String username,String password) {
+    public void userAuthentication(String username,String password) {
         requestSpecification = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
@@ -38,11 +38,5 @@ public class DeleteBookStepDefinitions {
     @Then("Delete response status should be {int}")
     public void responseStatusCodeShouldBe(int statusCode) {
         SerenityRest.restAssuredThat(response->response.statusCode(statusCode));
-    }
-
-    @When("I send a DELETE request to delete a book with invalid ID format {string}")
-    public void sendRequestToDeleteBooksWithInvalidID(String invalidFormatBookId) {
-        response = requestSpecification.when()
-                .delete("/books/" + invalidFormatBookId);
     }
 }
