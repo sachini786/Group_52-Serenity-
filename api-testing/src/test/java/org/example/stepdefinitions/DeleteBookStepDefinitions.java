@@ -39,10 +39,4 @@ public class DeleteBookStepDefinitions {
     public void responseStatusCodeShouldBe(int statusCode) {
         SerenityRest.restAssuredThat(response->response.statusCode(statusCode));
     }
-
-    @When("I send a DELETE request to delete a book with invalid ID format {string}")
-    public void sendRequestToDeleteBooksWithInvalidID(String invalidFormatBookId) {
-        response = requestSpecification.when()
-                .delete("/books/" + invalidFormatBookId);
-    }
 }

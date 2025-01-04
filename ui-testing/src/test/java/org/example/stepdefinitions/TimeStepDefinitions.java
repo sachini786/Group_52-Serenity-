@@ -49,12 +49,7 @@ public class TimeStepDefinitions {
     public void addProjectWithNameCustomerName(String name, String customerName) {
         timeAction.selectProjectName(name);
         timeAction.selectCustomerName(customerName);
-        timeAction.clickSave();
-    }
-
-    @Then("user expect to show project")
-    public void userExpectToShowProject() {
-        timeAction.waitUntilEditForm();
+        timeAction.clickSubmit();
     }
 
     @Given("user is in time page wants to search for project")
@@ -67,12 +62,15 @@ public class TimeStepDefinitions {
 
     @When("user search for project with project name {string},customer name {string}")
     public void userSearchForProjectWithProjectNameCustomerName(String projectName, String customerName) {
-        //timeAction.selectProjectNameForSearch(projectName);
         timeAction.selectCustomerNameForSearch(customerName);
-        timeAction.clickSearch();
+        timeAction.selectProjectNameForSearch(projectName);
+        timeAction.clickSubmit();
     }
 
     @Then("user expect to see project with name {string},event {string}")
     public void userExpectToSeeProjectWithNameEvent(String projectName, String customerName) {
+        commonAction.pause(1000);
+        timeAction.validateIfTableHasProject(projectName,customerName);
+
     }
 }

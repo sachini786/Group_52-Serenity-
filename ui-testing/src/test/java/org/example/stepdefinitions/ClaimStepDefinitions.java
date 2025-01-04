@@ -49,11 +49,6 @@ public class ClaimStepDefinitions {
         claimAction.clickSubmit();
     }
 
-    @Then("user expect success message")
-    public void userExpectSuccessMessage() {
-        claimAction.waitUntilSuccessMessage();
-    }
-
     @Given("user is in claim page wants to search for initiated claim")
     public void userIsInClaimPageWantsToSearchForInitiatedClaim() {
         userIsInDashboard();
@@ -71,6 +66,7 @@ public class ClaimStepDefinitions {
 
     @Then("user expect to see claim with name {string},event {string}, currency {string} and status {string}")
     public void userExpectToSeeClaimWithNameEvent(String name,String event,String currency,String status) {
+        commonAction.pause(1000);
         claimAction.validateIfTableHasClaim(name,event,currency,status);
     }
 }

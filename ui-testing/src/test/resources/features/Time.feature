@@ -7,10 +7,10 @@ Feature: Time
 
   Scenario: Add Project Info
     Given user is in project info in time page and click add button
-    When user add a project with name "AAAA",customer name "Apache Software Foundation"
-    Then user expect to show project
+    When user add a project with name "AAA",customer name "Apache Software Foundation"
+    Then user expect success message
 
   Scenario: Search existing Project
     Given user is in time page wants to search for project
-    When user search for project with project name "AAAA",customer name "Apache Software Foundation"
-    Then user expect to see project with name "AAAA",event "Apache Software Foundation"
+    When user search for project with project name "AAA",customer name "Apache Software Foundation"
+    Then user expect to see project with name "AAA",event "Apache Software Foundation"
