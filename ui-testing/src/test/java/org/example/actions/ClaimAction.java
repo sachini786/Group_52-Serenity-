@@ -17,13 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ClaimAction extends UIInteractionSteps {
     WebDriverWait wait = new WebDriverWait(getDriver(), 10);
 
-    public void pause(int milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
     @Step("click assign claim")
     public void clickAssignClaim(){
         $(By.xpath("//button[contains(., 'Assign Claim')]")).click();
@@ -53,12 +46,6 @@ public class ClaimAction extends UIInteractionSteps {
         $(By.xpath("//button[@type='submit']")).click();
     }
 
-    @Step("wait success message")
-    public void waitUntilSuccessMessage(){
-        WebElement header = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"oxd-toaster_1\"]/div/div[1]/div[2]/p[1]")));
-        Assert.assertEquals("Success",header.getAttribute("innerHTML"));
-    }
-
     @Step("select event to search")
     public void selectEventToSearch(String event) {
         $(By.xpath("//label[contains(text(),'Event Name')]/following::div[contains(@class,'oxd-select-text-input')]")).click();
@@ -78,7 +65,6 @@ public class ClaimAction extends UIInteractionSteps {
 
     @Step("validate if the table has claim")
     public void validateIfTableHasClaim(String employeeName,String eventName,String currencyName,String statusName){
-        pause(1000);
         ListOfWebElementFacades rows = findAll(By.cssSelector(".oxd-table-row"));
 
         boolean rowFound = rows.stream().anyMatch(row -> {
