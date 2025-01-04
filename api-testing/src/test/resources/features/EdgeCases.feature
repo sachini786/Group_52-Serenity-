@@ -14,3 +14,8 @@ Feature: Edge Cases
     Given user need to update a book with extra field
     When user send request to update book
     Then the edge case response status should be 404
+
+  Scenario: Delete a book with a invalid ID as a user
+    Given user need to authenticate using "user" and "password"
+    When user send a DELETE request to delete a book with invalid ID format "a"
+    Then the edge case response status should be 403
