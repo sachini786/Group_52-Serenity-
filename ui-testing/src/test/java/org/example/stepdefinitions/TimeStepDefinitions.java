@@ -57,21 +57,22 @@ public class TimeStepDefinitions {
         timeAction.waitUntilEditForm();
     }
 
-//    @Given("user is in time page wants to search for project")
-//    public void userIsInTimePageWantsToSearchForProject() {
-//        userIsInDashboardPage();
-//        userClickTimeSectionInSidebar();
-//        assertThat(commonAction.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/time/viewProjects");
-//    }
-//
-//    @When("user search for project with project name {string},customer name {string}")
-//    public void userSearchForProjectWithProjectNameCustomerName(String projectName, String customerName) {
-//        timeAction.enterProjectNameToSearch(projectName);
-//        timeAction.selectCustomerNameToSearch(customerName);
-//        timeAction.clickSearch();
-//    }
-//
-//    @Then("user expect to see project with name {string},event {string}")
-//    public void userExpectToSeeProjectWithNameEvent(String projectName, String customerName) {
-//    }
+    @Given("user is in time page wants to search for project")
+    public void userIsInTimePageWantsToSearchForProject() {
+        userIsInDashboardPage();
+        userClickTimeSectionInSidebar();
+        timeAction.clickProjectsUnderProjectInfo();
+        assertThat(commonAction.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/time/viewProjects");
+    }
+
+    @When("user search for project with project name {string},customer name {string}")
+    public void userSearchForProjectWithProjectNameCustomerName(String projectName, String customerName) {
+        //timeAction.selectProjectNameForSearch(projectName);
+        timeAction.selectCustomerNameForSearch(customerName);
+        timeAction.clickSearch();
+    }
+
+    @Then("user expect to see project with name {string},event {string}")
+    public void userExpectToSeeProjectWithNameEvent(String projectName, String customerName) {
+    }
 }

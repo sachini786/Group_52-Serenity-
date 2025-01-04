@@ -15,7 +15,7 @@ public class DeleteBookStepDefinitions {
     private static final String BASE_URL = "http://localhost:7081/api/";
 
     @Given("user authenticate using {string} and {string}")
-    public void userUsernameAndPassword(String username,String password) {
+    public void userAuthentication(String username,String password) {
         requestSpecification = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()

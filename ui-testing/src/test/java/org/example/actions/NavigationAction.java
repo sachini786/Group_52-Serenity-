@@ -14,10 +14,5 @@ public class NavigationAction extends UIInteractionSteps {
     public void toTimePage() {
         $(By.xpath("//a[@href='/web/index.php/time/viewTimeModule']")).click();
     }
-
-    @Step("Navigate to Projects Page")
-    public void toProjectsPage() {
-        $(By.xpath("//a[@role='menuitem' and text()='Projects']")).click();
-    }
 }
 

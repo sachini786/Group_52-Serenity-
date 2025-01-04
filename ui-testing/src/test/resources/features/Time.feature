@@ -10,7 +10,7 @@ Feature: Time
     When user add a project with name "AAAA",customer name "Apache Software Foundation"
     Then user expect to show project
 
-#  Scenario: Search existing Project
-#    Given user is in time page wants to search for project
-#    When user search for project with project name "AAAAA",customer name "Apache Software Foundation"
-#    Then user expect to see project with name "AAAAA",event "Apache Software Foundation"
+  Scenario: Search existing Project
+    Given user is in time page wants to search for project
+    When user search for project with project name "AAAA",customer name "Apache Software Foundation"
+    Then user expect to see project with name "AAAA",event "Apache Software Foundation"
