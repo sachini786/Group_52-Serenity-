@@ -8,5 +8,5 @@ Feature: Recruitment Page Actions
 
   Scenario: Add a new vacancy
     Given user is on the Recruitment page and clicks the Vacancies section and the Add button
-    When user adds a new vacancy with Vacancy Name "New Vacancy1"
+    When user adds a new vacancy with Vacancy Name "QA Summer Internship"
     Then user expects to see the Edit Vacancy page
