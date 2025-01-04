@@ -41,7 +41,6 @@ jobs:
       env:
         DISPLAY: ":99"
       run: mvn clean verify
-      continue-on-error: true
 
     - name: Upload Serenity Report for UI
       uses: actions/upload-artifact@v4
