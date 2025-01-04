@@ -16,6 +16,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ClaimAction extends UIInteractionSteps {
     WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+
+    public void pause(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
     @Step("click assign claim")
     public void clickAssignClaim(){
         $(By.xpath("//button[contains(., 'Assign Claim')]")).click();
@@ -23,7 +31,10 @@ public class ClaimAction extends UIInteractionSteps {
 
     @Step("select employee name")
     public void selectEmployeeName(String employeeName){
-        $(By.xpath("//label[contains(text(), 'Employee Name')]/following::input[1]")).sendKeys(employeeName, Keys.ARROW_DOWN, Keys.ENTER);
+        $(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div/div/div[2]/div/div/input")).sendKeys(employeeName);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div/div/div[2]/div/div[2]")));
+        WebElement firstElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div/div/div[2]/div/div[2]/div/span")));
+        firstElement.click();
     }
 
     @Step("select event")
@@ -37,22 +48,27 @@ public class ClaimAction extends UIInteractionSteps {
         $(By.xpath("//label[contains(text(),'Currency')]/following::div[contains(@class,'oxd-select-text-input')]")).click();
         $(By.xpath(String.format("//div[@role='listbox']//span[contains(text(),'%s')]",currency))).click();
     }
-    @Step("click create")
-    public void clickCreate(){
+    @Step("click submit")
+    public void clickSubmit(){
         $(By.xpath("//button[@type='submit']")).click();
     }
 
-    @Step("wait for assign claim form")
-    public void waitUntilClaimForm(){
-        By assignClaimTitle=By.xpath("//h6[contains(@class, 'oxd-text--h6') and contains(@class, 'orangehrm-main-title') and and contains(text(), 'Assign Claim')]");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(assignClaimTitle));
-        Assert.assertEquals("Assign Claim",find(assignClaimTitle).getAttribute("innerHTML"));
+    @Step("wait success message")
+    public void waitUntilSuccessMessage(){
+        WebElement header = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"oxd-toaster_1\"]/div/div[1]/div[2]/p[1]")));
+        Assert.assertEquals("Success",header.getAttribute("innerHTML"));
     }
 
-    @Step("enter event to search")
+    @Step("select event to search")
     public void selectEventToSearch(String event) {
         $(By.xpath("//label[contains(text(),'Event Name')]/following::div[contains(@class,'oxd-select-text-input')]")).click();
         $(By.xpath(String.format("//div[@role='listbox']//span[contains(text(),'%s')]",event))).click();
+    }
+
+    @Step("select event to search")
+    public void selectStatusToSearch(String status) {
+        $(By.xpath("//label[contains(text(),'Status')]/following::div[contains(@class,'oxd-select-text-input')]")).click();
+        $(By.xpath(String.format("//div[@role='listbox']//span[contains(text(),'%s')]",status))).click();
     }
 
     @Step("click search")
@@ -61,16 +77,20 @@ public class ClaimAction extends UIInteractionSteps {
     }
 
     @Step("validate if the table has claim")
-    public void validateIfTableHasClaim(String employeeName){
+    public void validateIfTableHasClaim(String employeeName,String eventName,String currencyName,String statusName){
+        pause(1000);
         ListOfWebElementFacades rows = findAll(By.cssSelector(".oxd-table-row"));
 
         boolean rowFound = rows.stream().anyMatch(row -> {
-            String empName = row.findElement(By.xpath(".//div[2]")).getText();
-            return empName.equals(employeeName);
+            String employee = row.findElement(By.xpath(".//div[2]")).getText();
+            String event = row.findElement(By.xpath(".//div[3]//span")).getText();
+            String currency = row.findElement(By.xpath(".//div[5]")).getText();
+            String status = row.findElement(By.xpath(".//div[7]")).getText();
+            return employee.equals(employeeName) && currency.equals(currencyName) && event.equals(eventName) && status.equals(statusName);
         });
 
         assertThat(rowFound)
-                .as("Row with Employee Name: %s,should exist", employeeName)
+                .as("Row with Employee Name: %s, Event: %s,Currency: %s, Status: %s should exist", employeeName, eventName,currencyName, statusName)
                 .isTrue();
     }
 
