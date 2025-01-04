@@ -18,9 +18,9 @@ public class TimeStepDefinitions {
     private final static String USERNAME = "Admin";
     private final static String PASSWORD = "admin123";
     private final static String DASHBOARD = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-    private final static String TIMEPAGE = "https://opensource-demo.orangehrmlive.com/web/index.php/time/viewEmployeeTimesheet";
-    private final static String PROJECTSPAGE= "https://opensource-demo.orangehrmlive.com/web/index.php/time/viewProjects";
-    private final static String ADDPROJECTPAGE= "https://opensource-demo.orangehrmlive.com/web/index.php/time/saveProject";
+    private final static String TIME_PAGE = "https://opensource-demo.orangehrmlive.com/web/index.php/time/viewEmployeeTimesheet";
+    private final static String PROJECTS_PAGE = "https://opensource-demo.orangehrmlive.com/web/index.php/time/viewProjects";
+    private final static String ADD_PROJECT_PAGE = "https://opensource-demo.orangehrmlive.com/web/index.php/time/saveProject";
 
     @Given("user is in dashboard page")
     public void userIsInDashboardPage() {
@@ -36,7 +36,7 @@ public class TimeStepDefinitions {
 
     @Then("user expect redirection to time page")
     public void userExpectRedirectionToTimePage() {
-        assertThat(commonAction.getUrl()).isEqualTo(TIMEPAGE);
+        assertThat(commonAction.getUrl()).isEqualTo(TIME_PAGE);
     }
 
     @Given("user is in project info in time page and click add button")
@@ -45,9 +45,9 @@ public class TimeStepDefinitions {
         userClickTimeSectionInSidebar();
         userExpectRedirectionToTimePage();
         timeAction.clickProjectsUnderProjectInfo();
-        assertThat(commonAction.getUrl()).isEqualTo(PROJECTSPAGE);
+        assertThat(commonAction.getUrl()).isEqualTo(PROJECTS_PAGE);
         timeAction.clickAdd();
-        assertThat(commonAction.getUrl()).isEqualTo(ADDPROJECTPAGE);
+        assertThat(commonAction.getUrl()).isEqualTo(ADD_PROJECT_PAGE);
     }
 
     @When("user add a project with name {string},customer name {string}")
@@ -62,7 +62,7 @@ public class TimeStepDefinitions {
         userIsInDashboardPage();
         userClickTimeSectionInSidebar();
         timeAction.clickProjectsUnderProjectInfo();
-        assertThat(commonAction.getUrl()).isEqualTo(PROJECTSPAGE);
+        assertThat(commonAction.getUrl()).isEqualTo(PROJECTS_PAGE);
     }
 
     @When("user search for project with project name {string},customer name {string}")
