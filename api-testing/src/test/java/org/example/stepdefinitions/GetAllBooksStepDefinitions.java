@@ -5,8 +5,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.mapper.ObjectMapperType;
-import io.restassured.specification.RequestSpecification;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.rest.SerenityRest;
 import org.example.models.Book;
 import org.hamcrest.Matchers;
@@ -20,7 +20,7 @@ public class GetAllBooksStepDefinitions {
     private static final String BASE_URL = "http://localhost:7081/";
 
     @Given("user authenticate using by {string} and {string} wants to get all books")
-    public void authenticatedUserWantsToGetAllBooks(String username,String password) {
+    public void authenticatedUserWantsToGetAllBooks(String username, String password) {
         requestSpecification = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
@@ -29,17 +29,17 @@ public class GetAllBooksStepDefinitions {
 
     @Given("user want to get all books when there are no books available")
     public void userWantToGetAllBooksWhenThereAreNoBooksAvailable() {
-        authenticatedUserWantsToGetAllBooks("user","password");
+        authenticatedUserWantsToGetAllBooks("user", "password");
         userCallServiceToGetAllBooks();
 
-        Book[] allBooksAvailable= response.getBody().as(Book[].class, ObjectMapperType.JACKSON_2);
+        Book[] allBooksAvailable = response.getBody().as(Book[].class, ObjectMapperType.JACKSON_2);
         for (Book book : allBooksAvailable) {
 
             SerenityRest.given()
                     .baseUri(BASE_URL)
                     .auth()
-                    .basic("user","password")
-                    .delete(String.format("api/books/%d",book.id()));
+                    .basic("user", "password")
+                    .delete(String.format("api/books/%d", book.id()));
         }
 
     }
@@ -57,29 +57,29 @@ public class GetAllBooksStepDefinitions {
 
     @Then("user expect response should contain an empty list")
     public void userExpectResponseShouldContainAnEmptyList() {
-        response.then().body("result",Matchers.hasSize(0));
+        response.then().body("result", Matchers.hasSize(0));
     }
 
     @Given("user want to get all books when there are books available")
     public void userWantToGetAllBooksThereAreBooksAvailable() {
-        authenticatedUserWantsToGetAllBooks("user","password");
-        final String REQUEST_BODY= """
+        authenticatedUserWantsToGetAllBooks("user", "password");
+        final String REQUEST_BODY = """
                     {
                         "title": "Harry Potter",
                         "author": "JK Rolling"
                     }
                 """;
 
-        createBookId= requestSpecification
+        createBookId = requestSpecification
                 .body(REQUEST_BODY)
                 .header("Content-Type", "application/json")
                 .post("/api/books").getBody().as(Book.class, ObjectMapperType.JACKSON_2).id();
     }
 
-    @After(value="@BooksExist")
+    @After(value = "@BooksExist")
     public void afterBooksExistScenario() {
         requestSpecification.when()
-                .delete(String.format("api/books/%d",createBookId));
+                .delete(String.format("api/books/%d", createBookId));
     }
 
     @Then("user expect response should contain a list of books")
@@ -90,14 +90,14 @@ public class GetAllBooksStepDefinitions {
     @Then("user expect response should have valid schema")
     public void userExpectResponseShouldHaveValidSchema() {
         response
-        .then()
-        .body("$", not(empty()))
-        .body("$", everyItem(
-                allOf(
-                        hasKey("id"),
-                        hasKey("title"),
-                        hasKey("author")
-                )
-        ));
+                .then()
+                .body("$", not(empty()))
+                .body("$", everyItem(
+                        allOf(
+                                hasKey("id"),
+                                hasKey("title"),
+                                hasKey("author")
+                        )
+                ));
     }
 }
