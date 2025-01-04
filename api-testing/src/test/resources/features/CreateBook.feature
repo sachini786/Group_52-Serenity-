@@ -6,9 +6,9 @@ Feature: Book API Test Scenarios
     Then the response status should be <status>
 
     Examples:
-      | id | title           | author        | status |role  |
-      | 1  | Robinson Crusoe | Daniel Defoe  |   201  |admin |
-      | 2  | Clean Code      | Robert Martin |   201  |user  |
+      | id | title           | author        | status | role  |
+      | 1  | Robinson Crusoe | Daniel Defoe  | 201    | admin |
+      | 2  | Clean Code      | Robert Martin | 201    | user  |
 
 
   Scenario Outline: Validate request when mandatory fields are missing
@@ -24,11 +24,11 @@ Feature: Book API Test Scenarios
     Then status <status>
 
     Examples:
-      | id | title | author          | status |
-      |    |       |                 | 400    |
-      | 6  | Jane  |                 | 400    |
-      |    |Hamlet |                 | 400    |
-      |    |       |Charles Dickens  | 400    |
+      | id | title  | author          | status |
+      |    |        |                 | 400    |
+      | 6  | Jane   |                 | 400    |
+      |    | Hamlet |                 | 400    |
+      |    |        | Charles Dickens | 400    |
 
 
   Scenario Outline: Validate duplicate title
@@ -43,8 +43,8 @@ Feature: Book API Test Scenarios
     When method POST with endpoint "/books"
     Then status <status>
     Examples:
-      | id | title                   | author              | status |
-      |  1 | The Hobbit              | Aldous Huxley       | 409    |
+      | id | title      | author        | status |
+      | 1  | The Hobbit | Aldous Huxley | 409    |
 
 
 
