@@ -1,7 +1,7 @@
 package org.example.actions;
 
-import net.thucydides.core.annotations.Step;
 import net.serenitybdd.core.steps.UIInteractionSteps;
+import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.By;
 
 public class NavigationAction extends UIInteractionSteps {
@@ -22,7 +22,7 @@ public class NavigationAction extends UIInteractionSteps {
 
     @Step("Navigate to the Claim page")
     public void toOrangeHRMClaimPage() {
-       $(By.xpath("//a[@href='/web/index.php/claim/viewClaimModule']")).click();
+        $(By.xpath("//a[@href='/web/index.php/claim/viewClaimModule']")).click();
     }
 
     @Step("Navigate to the Recruitment page")
@@ -31,7 +31,14 @@ public class NavigationAction extends UIInteractionSteps {
     }
 
     @Step("Navigate to the Admin page")
-    public void toOrangeHRMAdminPage(){
+    public void toOrangeHRMAdminPage() {
         $(By.xpath("//span[@data-v-7b563373 and @data-v-6475d26d and text()='Admin']")).click();
     }
+
+    @Step("navigate to PIM page")
+    public void toOrangeHRMPIMPage() {
+        $(By.xpath("//a[@href='/web/index.php/pim/viewPimModule']")).click();
+
+    }
+
 }

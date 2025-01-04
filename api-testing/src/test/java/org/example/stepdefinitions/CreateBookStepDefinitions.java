@@ -53,8 +53,6 @@ public class CreateBookStepDefinitions {
     @Given("request payload with" )
     public void requestPayloadWith(String requestBody) {
         requestSpecification = SerenityRest.given().baseUri(BASE_URL).auth().basic("user","password").body(requestBody);
-
-
     }
 
     @When("method POST with endpoint {string}")
@@ -63,21 +61,9 @@ public class CreateBookStepDefinitions {
     }
 
     @Then("status {int}")
-    public void statusStatus(int expectedStatus) {
-        int actualStatusCode = response.getStatusCode();
-        assert actualStatusCode == expectedStatus :
-                String.format("Expected status code %d but got %d", expectedStatus, actualStatusCode);
+    public void responseForPostDuplicate(int statusCode) {
+        response.then().statusCode(statusCode);
+        System.out.println(response.asString());
 
     }
-
-
-    @And("the response message should contain {string}")
-    public void theResponseMessageShouldContain(String expectedMessage) {
-        String responseMessage = response.getBody().asString();
-        System.out.printf(responseMessage);
-    }
-
-
-
-
 }
