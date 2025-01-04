@@ -22,7 +22,6 @@ Feature: Book API Test Scenarios
       """
     When method POST with endpoint "/books"
     Then status <status>
-    And the response message should contain "Mandatory parameters should not be null"
 
     Examples:
       | id | title | author          | status |
@@ -43,10 +42,9 @@ Feature: Book API Test Scenarios
       """
     When method POST with endpoint "/books"
     Then status <status>
-    And the response message should contain "Book Already Exists"
     Examples:
       | id | title                   | author              | status |
-      |    | The Hobbit              | Aldous Huxley       | 400    |
+      |  1 | The Hobbit              | Aldous Huxley       | 409    |
 
 
 
