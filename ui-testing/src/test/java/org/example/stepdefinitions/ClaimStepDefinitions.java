@@ -46,29 +46,31 @@ public class ClaimStepDefinitions {
         claimAction.selectEmployeeName(employeeName);
         claimAction.selectEvent(event);
         claimAction.selectCurrency(currency);
-        claimAction.clickCreate();
+        claimAction.clickSubmit();
     }
 
-    @Then("user expect to show assign claim form")
-    public void userExpectToShowAssignClaimForm() {
-        claimAction.waitUntilClaimForm();
+    @Then("user expect success message")
+    public void userExpectSuccessMessage() {
+        claimAction.waitUntilSuccessMessage();
     }
 
-    @Given("user is in claim page wants to search for claim")
-    public void userIsInClaimPageWantsToSearchForClaim() {
+    @Given("user is in claim page wants to search for initiated claim")
+    public void userIsInClaimPageWantsToSearchForInitiatedClaim() {
         userIsInDashboard();
         userClickClaimSectionInSidebar();
         assertThat(commonAction.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/claim/viewAssignClaim");
     }
 
-    @When("user search for claim with employee name {string}")
-    public void userSearchForClaimWithEmployeeNameEventCurrency(String employeeName){
+    @When("user search for claim with employee name {string},event {string} and status {string}")
+    public void userSearchForClaimWithEmployeeNameEventCurrency(String employeeName,String event ,String status) {
         claimAction.selectEmployeeName(employeeName);
+        claimAction.selectEventToSearch(event);
+        claimAction.selectStatusToSearch(status);
         claimAction.clickSearch();
     }
 
-    @Then("user expect to see claim with name {string}")
-    public void userExpectToSeeClaimWithNameEvent(String name) {
-        claimAction.validateIfTableHasClaim(name);
+    @Then("user expect to see claim with name {string},event {string}, currency {string} and status {string}")
+    public void userExpectToSeeClaimWithNameEvent(String name,String event,String currency,String status) {
+        claimAction.validateIfTableHasClaim(name,event,currency,status);
     }
 }
