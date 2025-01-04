@@ -21,6 +21,11 @@ public class NavigationAction extends UIInteractionSteps {
        $(By.xpath("//a[@href='/web/index.php/claim/viewClaimModule']")).click();
     }
 
+    @Step("Navigate to the Recruitment page")
+    public void toOrangeHRMRecruitmentPage() {
+        $(By.xpath("//a[@href='/web/index.php/recruitment/viewRecruitmentModule']")).click();
+    }
+
     @Step("Navigate to the Admin page")
     public void toOrangeHRMAdminPage(){
         $(By.xpath("//span[@data-v-7b563373 and @data-v-6475d26d and text()='Admin']")).click();
