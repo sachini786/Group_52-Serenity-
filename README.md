@@ -36,8 +36,8 @@ This project employs **Serenity-BDD** as the primary testing tool, enabling seam
 
 ### Prerequisites
 Ensure the following are installed on your system:  
-- **Java JDK (13 or later)**  
-- **Maven (3.6.0 or later)**  
+- **Java JDK 17**  
+- **Maven 3.9.5**  
 - **Git**
 
  > **Note**: The latest version of Serenity supports **Cucumber 6.x**, ensuring compatibility with the latest BDD features.  
