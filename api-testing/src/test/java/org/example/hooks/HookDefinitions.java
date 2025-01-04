@@ -13,6 +13,8 @@ public class HookDefinitions {
     @Getter
     private static int createdBookIDForUpdate;
     @Getter
+    private static int createdBookIDForUpdateAndDelete;
+    @Getter
     private static int createdBookIDForDelete;
     private static String title;
     private static String author;
@@ -54,23 +56,45 @@ public class HookDefinitions {
         createdBookIDForUpdate = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
-                .basic("user","password")
+                .basic("admin","password")
                 .body(requestBody)
                 .header("Content-Type", "application/json")
                 .post("/books")
-                .then()
-                .statusCode(201) // Validate creation
-                .extract()
-                .path("id");
+                .getBody().as(Book.class, ObjectMapperType.JACKSON_2).id();
 
     }
-    @After(value="@CreateBookForUpdate")
-    public void DeleteBook(){
-        SerenityRest.given()
+
+    @Before(value="@CreateBookForUpdateAndDelete")
+    public void CreateBookForUpdateAndDelete(){
+
+        title=Faker.instance().book().title();
+        author=Faker.instance().book().author();
+
+        String requestBody =String.format("""
+                {
+                "title": "%s",
+                "author": "%s"
+                }
+                """,title,author);
+        createdBookIDForUpdateAndDelete = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
                 .basic("admin","password")
-                .delete(String.format("api/books/%d",createdBookIDForDelete));
+                .body(requestBody)
+                .header("Content-Type", "application/json")
+                .post("/books")
+                .getBody().as(Book.class, ObjectMapperType.JACKSON_2).id();
 
     }
+    @After(value="@CreateBookForUpdateAndDelete")
+    public void DeleteUpdateBook(){
+        SerenityRest.given()
+                .baseUri(BASE_URL)
+                .auth()
+                .basic("user","password")
+                .header("Content-Type", "application/json")
+                .delete(String.format("/books/%d",createdBookIDForUpdateAndDelete));
+
+    }
+
 }
