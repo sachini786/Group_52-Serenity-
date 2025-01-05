@@ -1,0 +1,2 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"GET a book by ID","GET a non-existent book by ID as a regular user","FAILURE","2025-01-05T06:58:02.787588436Z[Etc/UTC]","0.0","0.09"

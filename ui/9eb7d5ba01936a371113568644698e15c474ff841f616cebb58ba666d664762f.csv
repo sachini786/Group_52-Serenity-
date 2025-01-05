@@ -1,0 +1,4 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Claim","Navigate to Claim page","SUCCESS","2025-01-05T06:58:32.886211919Z[Etc/UTC]","0.0","3.06"
+"Claim","Assign Claim","SUCCESS","2025-01-05T06:58:36.027926156Z[Etc/UTC]","0.0","5.73"
+"Claim","Search existing claim","SUCCESS","2025-01-05T06:58:41.84477581Z[Etc/UTC]","0.0","6.44"

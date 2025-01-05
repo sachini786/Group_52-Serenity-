@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Claim" skipped="0" tests="3" time="15.23" timestamp="2025-01-05 06:58:32"><testcase name="Navigate to Claim page"/><testcase name="Assign Claim"/><testcase name="Search existing claim"/></testsuite>

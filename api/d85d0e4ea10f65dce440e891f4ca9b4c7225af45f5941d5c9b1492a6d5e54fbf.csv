@@ -1,0 +1,2 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"GET a book by ID","GET a book with a valid ID format as an regular user when book exists","FAILURE","2025-01-05T06:58:02.411772239Z[Etc/UTC]","0.0","0.28"

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="3" name="GET a book by ID" skipped="0" tests="8" time="1.2" timestamp="2025-01-05 06:58:01"><testcase name="GET a book by valid ID as different user when book does not exists"><failure message="1 expectation failed.&#10;Expected status code &lt;404&gt; but was &lt;403&gt;.&#10;" type="java.lang.AssertionError">1 expectation failed.
+Expected status code &lt;404&gt; but was &lt;403&gt;.
+</failure><system-err>1 expectation failed.
+Expected status code &lt;404&gt; but was &lt;403&gt;.
+
+io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:126)
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:134)
+io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
+io.restassured.internal.ValidatableResponseImpl.super$2$statusCode(ValidatableResponseImpl.groovy)
+groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1268)
+io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy:142)
+io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy)
+api.testing@1.0.0-SNAPSHOT/org.example.stepdefinitions.GetBookByIDStepDefinitions.responseStatusCodeShouldBe(GetBookByIDStepDefinitions.java:115)
+✽.user expects response status to be 404(file:///home/runner/work/Group_52-Serenity-/Group_52-Serenity-/api-testing/src/test/resources/features/GetBookByID.feature:6)
+</system-err></testcase><testcase name="GET a book with a valid ID format as an admin user when book exists"/><testcase name="GET a book with a valid ID format as an regular user when book exists"><failure message="1 expectation failed.&#10;Expected status code &lt;200&gt; but was &lt;403&gt;.&#10;" type="java.lang.AssertionError">1 expectation failed.
+Expected status code &lt;200&gt; but was &lt;403&gt;.
+</failure><system-err>1 expectation failed.
+Expected status code &lt;200&gt; but was &lt;403&gt;.
+
+io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:126)
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:134)
+io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
+io.restassured.internal.ValidatableResponseImpl.super$2$statusCode(ValidatableResponseImpl.groovy)
+groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1268)
+io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy:142)
+io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy)
+api.testing@1.0.0-SNAPSHOT/org.example.stepdefinitions.GetBookByIDStepDefinitions.responseStatusCodeShouldBe(GetBookByIDStepDefinitions.java:115)
+✽.user expects response status to be 200(file:///home/runner/work/Group_52-Serenity-/Group_52-Serenity-/api-testing/src/test/resources/features/GetBookByID.feature:27)
+</system-err></testcase><testcase name="GET a non-existent book by ID as an admin"/><testcase name="GET a non-existent book by ID as a regular user"><failure message="1 expectation failed.&#10;Expected status code &lt;404&gt; but was &lt;403&gt;.&#10;" type="java.lang.AssertionError">1 expectation failed.
+Expected status code &lt;404&gt; but was &lt;403&gt;.
+</failure><system-err>1 expectation failed.
+Expected status code &lt;404&gt; but was &lt;403&gt;.
+
+io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:126)
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:134)
+io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
+io.restassured.internal.ValidatableResponseImpl.super$2$statusCode(ValidatableResponseImpl.groovy)
+groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1268)
+io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy:142)
+io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy)
+api.testing@1.0.0-SNAPSHOT/org.example.stepdefinitions.GetBookByIDStepDefinitions.responseStatusCodeShouldBe(GetBookByIDStepDefinitions.java:115)
+✽.user expects response status to be 404(file:///home/runner/work/Group_52-Serenity-/Group_52-Serenity-/api-testing/src/test/resources/features/GetBookByID.feature:41)
+</system-err></testcase><testcase name="GET a book with an invalid ID format as an admin"/><testcase name="GET a book with an invalid ID format as a regular user"/></testsuite>

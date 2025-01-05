@@ -1,0 +1,4 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Leave","Navigate to Leave page","SUCCESS","2025-01-05T06:58:48.397719194Z[Etc/UTC]","0.0","3.84"
+"Leave","Add entitlements","SUCCESS","2025-01-05T06:58:52.320457852Z[Etc/UTC]","0.0","6.23"
+"Leave","Search Leave List","SUCCESS","2025-01-05T06:59:04.417346893Z[Etc/UTC]","0.0","5.23"

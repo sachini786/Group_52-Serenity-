@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Update Book by ID" skipped="0" tests="4" time="0.98" timestamp="2025-01-05 06:58:03"><testcase name="Update a book with a valid ID as an admin"/><testcase name="Update a book with missing mandatory fields as an admin"/><testcase name="Update a book with a valid ID as a normal user"/><testcase name="Send an empty string as an admin"><failure message="1 expectation failed.&#10;Expected status code &lt;400&gt; but was &lt;200&gt;.&#10;" type="java.lang.AssertionError">1 expectation failed.
+Expected status code &lt;400&gt; but was &lt;200&gt;.
+</failure><system-err>1 expectation failed.
+Expected status code &lt;400&gt; but was &lt;200&gt;.
+
+io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:126)
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:134)
+io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
+io.restassured.internal.ValidatableResponseImpl.super$2$statusCode(ValidatableResponseImpl.groovy)
+groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1268)
+io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy:142)
+io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy)
+api.testing@1.0.0-SNAPSHOT/org.example.stepdefinitions.UpdateAllBooksStepDefinitions.lambda$responseStatusCodeShouldBeExact$0(UpdateAllBooksStepDefinitions.java:55)
+net.serenitybdd.rest.SerenityRest.restAssuredThat(SerenityRest.java:626)
+api.testing@1.0.0-SNAPSHOT/org.example.stepdefinitions.UpdateAllBooksStepDefinitions.responseStatusCodeShouldBeExact(UpdateAllBooksStepDefinitions.java:55)
+✽.the response status code should be 400(file:///home/runner/work/Group_52-Serenity-/Group_52-Serenity-/api-testing/src/test/resources/features/UpdateAllBooks.feature:25)
+</system-err></testcase></testsuite>

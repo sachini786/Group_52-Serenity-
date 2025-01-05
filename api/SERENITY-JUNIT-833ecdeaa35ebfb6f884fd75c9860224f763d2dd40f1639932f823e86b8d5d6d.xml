@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Edge Cases" skipped="0" tests="3" time="0.34" timestamp="2025-01-05 06:57:59"><testcase name="Accessing to an Invalid endpoint"/><testcase name="Create a book with Extra unexpected details"/><testcase name="Delete a book with a invalid ID as a user"><failure message="1 expectation failed.&#10;Expected status code &lt;403&gt; but was &lt;400&gt;.&#10;" type="java.lang.AssertionError">1 expectation failed.
+Expected status code &lt;403&gt; but was &lt;400&gt;.
+</failure><system-err>1 expectation failed.
+Expected status code &lt;403&gt; but was &lt;400&gt;.
+
+io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:126)
+io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:134)
+io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
+io.restassured.internal.ValidatableResponseImpl.super$2$statusCode(ValidatableResponseImpl.groovy)
+groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1268)
+io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy:142)
+io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy)
+api.testing@1.0.0-SNAPSHOT/org.example.stepdefinitions.EdgeCasesStepDefinitions.lambda$theEdgeCaseResponseStatusShouldBeThe$0(EdgeCasesStepDefinitions.java:39)
+net.serenitybdd.rest.SerenityRest.restAssuredThat(SerenityRest.java:626)
+api.testing@1.0.0-SNAPSHOT/org.example.stepdefinitions.EdgeCasesStepDefinitions.theEdgeCaseResponseStatusShouldBeThe(EdgeCasesStepDefinitions.java:39)
+✽.the edge case response status should be 403(file:///home/runner/work/Group_52-Serenity-/Group_52-Serenity-/api-testing/src/test/resources/features/EdgeCases.feature:16)
+</system-err></testcase></testsuite>

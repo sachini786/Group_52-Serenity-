@@ -1,0 +1,3 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Get All Books","Get all books when books exist","SUCCESS","2025-01-05T06:58:01.160047697Z[Etc/UTC]","0.0","0.37"
+"Get All Books","Get all books when books exist and validate response schema","SUCCESS","2025-01-05T06:58:01.532495627Z[Etc/UTC]","0.0","0.28"

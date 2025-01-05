@@ -1,0 +1,5 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Get All Books","Get all books as different user","SUCCESS","2025-01-05T06:57:59.919576748Z[Etc/UTC]","0.0","0.31"
+"Get All Books","Get all books when no book exist","SUCCESS","2025-01-05T06:58:00.233156039Z[Etc/UTC]","0.0","0.92"
+"Get All Books","Get all books when books exist","SUCCESS","2025-01-05T06:58:01.160047697Z[Etc/UTC]","0.0","0.37"
+"Get All Books","Get all books when books exist and validate response schema","SUCCESS","2025-01-05T06:58:01.532495627Z[Etc/UTC]","0.0","0.28"

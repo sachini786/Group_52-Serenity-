@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="PIM" skipped="0" tests="3" time="21.46" timestamp="2025-01-05 06:58:11"><testcase name="navigate to PIM page"/><testcase name="add employee"/><testcase name="Search existing employee"/></testsuite>

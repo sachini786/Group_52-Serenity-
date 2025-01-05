@@ -1,0 +1,4 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"PIM","navigate to PIM page","SUCCESS","2025-01-05T06:58:11.026135095Z[Etc/UTC]","0.0","10.63"
+"PIM","add employee","SUCCESS","2025-01-05T06:58:21.831634501Z[Etc/UTC]","0.0","5.42"
+"PIM","Search existing employee","SUCCESS","2025-01-05T06:58:27.348320565Z[Etc/UTC]","0.0","5.41"

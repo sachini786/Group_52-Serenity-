@@ -1,0 +1,3 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Edge Cases","Accessing to an Invalid endpoint","SUCCESS","2025-01-05T06:57:59.565917392Z[Etc/UTC]","0.0","0.12"
+"Edge Cases","Create a book with Extra unexpected details","SUCCESS","2025-01-05T06:57:59.692884424Z[Etc/UTC]","0.0","0.1"

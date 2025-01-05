@@ -1,0 +1,3 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Book API Test Scenarios","Validate request when mandatory fields are missing","FAILURE","2025-01-05T06:57:57.796145367Z[Etc/UTC]","0.0","0.57"
+"Book API Test Scenarios","Validate duplicate title","FAILURE","2025-01-05T06:57:58.373650777Z[Etc/UTC]","0.0","0.12"

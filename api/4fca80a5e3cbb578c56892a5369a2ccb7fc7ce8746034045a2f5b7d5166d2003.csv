@@ -1,0 +1,3 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"GET a book by ID","GET a book with an invalid ID format as an admin","SUCCESS","2025-01-05T06:58:02.885130479Z[Etc/UTC]","0.0","0.09"
+"GET a book by ID","GET a book with an invalid ID format as a regular user","SUCCESS","2025-01-05T06:58:02.982103237Z[Etc/UTC]","0.0","0.09"

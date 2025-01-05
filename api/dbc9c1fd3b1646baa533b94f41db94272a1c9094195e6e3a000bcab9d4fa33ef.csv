@@ -1,0 +1,4 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"GET a book by ID","GET a book by valid ID as different user when book does not exists","FAILURE","2025-01-05T06:58:01.841796334Z[Etc/UTC]","0.0","0.26"
+"GET a book by ID","GET a book with a valid ID format as an regular user when book exists","FAILURE","2025-01-05T06:58:02.411772239Z[Etc/UTC]","0.0","0.28"
+"GET a book by ID","GET a non-existent book by ID as a regular user","FAILURE","2025-01-05T06:58:02.787588436Z[Etc/UTC]","0.0","0.09"
