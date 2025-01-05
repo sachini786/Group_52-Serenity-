@@ -3,6 +3,8 @@ package org.example.stepdefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.example.actions.CommonAction;
 import org.example.actions.LoginAction;
 import org.example.actions.NavigationAction;
@@ -16,17 +18,18 @@ public class RecruitmentStepDefinitions {
     CommonAction commonAction;
     RecruitmentAction recruitmentAction;
 
-    private final static String USERNAME = "Admin";
-    private final static String PASSWORD = "admin123";
+    private final EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+    private final String ADMIN = environmentVariables.getProperty("login.username");
+    private final String ADMIN_PASSWORD = environmentVariables.getProperty("login.password");
     private final static String DASHBOARD = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-    private final static String VIEWCANDIDATES = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/viewCandidates";
-    private final static String ADDJOBVACANCY = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addJobVacancy";
+    private final static String VIEW_CANDIDATES = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/viewCandidates";
+    private final static String ADD_JOB_VACANCY = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addJobVacancy";
 
 
     @Given("user is on the dashboard")
     public void userIsOnTheDashboard() {
         navigateAction.toOrangeHRMLoginPage();
-        loginAction.loginWithUsernameAndPassword(USERNAME, PASSWORD);
+        loginAction.loginWithUsernameAndPassword(ADMIN, ADMIN_PASSWORD);
         assertThat(commonAction.getUrl()).isEqualTo(DASHBOARD);
     }
 
@@ -37,7 +40,7 @@ public class RecruitmentStepDefinitions {
 
     @Then("user expects redirection to the Recruitment page")
     public void userExpectsRedirectionToTheRecruitmentPage() {
-        assertThat(commonAction.getUrl()).isEqualTo(VIEWCANDIDATES);
+        assertThat(commonAction.getUrl()).isEqualTo(VIEW_CANDIDATES);
     }
 
     @Given("user is on the Recruitment page and clicks the Vacancies section and the Add button")
@@ -46,7 +49,7 @@ public class RecruitmentStepDefinitions {
         userClicksRecruitmentSectionInTheSidebar();
         recruitmentAction.clickVacanciesTab();
         recruitmentAction.clickAddButton();
-        assertThat(commonAction.getUrl()).isEqualTo(ADDJOBVACANCY);
+        assertThat(commonAction.getUrl()).isEqualTo(ADD_JOB_VACANCY);
 
     }
 

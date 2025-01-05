@@ -3,6 +3,8 @@ package org.example.stepdefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.example.actions.CommonAction;
 import org.example.actions.LoginAction;
 import org.example.actions.NavigationAction;
@@ -15,8 +17,9 @@ public class TimeStepDefinitions {
     CommonAction commonAction;
     TimeAction timeAction;
 
-    private final static String USERNAME = "Admin";
-    private final static String PASSWORD = "admin123";
+    private final EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+    private final String ADMIN = environmentVariables.getProperty("login.username");
+    private final String ADMIN_PASSWORD = environmentVariables.getProperty("login.password");
     private final static String DASHBOARD = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
     private final static String TIME_PAGE = "https://opensource-demo.orangehrmlive.com/web/index.php/time/viewEmployeeTimesheet";
     private final static String PROJECTS_PAGE = "https://opensource-demo.orangehrmlive.com/web/index.php/time/viewProjects";
@@ -25,7 +28,7 @@ public class TimeStepDefinitions {
     @Given("user is in dashboard page")
     public void userIsInDashboardPage() {
         navigationAction.toOrangeHRMLoginPage();
-        loginAction.loginWithUsernameAndPassword(USERNAME,PASSWORD);
+        loginAction.loginWithUsernameAndPassword(ADMIN,ADMIN_PASSWORD);
         assertThat(commonAction.getUrl()).isEqualTo(DASHBOARD);
     }
 

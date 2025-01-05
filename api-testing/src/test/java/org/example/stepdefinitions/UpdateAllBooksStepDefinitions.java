@@ -6,12 +6,19 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.rest.SerenityRest;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.example.hooks.HookDefinitions;
 
 public class UpdateAllBooksStepDefinitions {
     public Response response;
     private RequestSpecification requestSpecification;
-    private static final String BASE_URL = "http://localhost:7081/api";
+    private final EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+    private final String BASE_URL = environmentVariables.getProperty("api.baseurl");
+    private final String USER = environmentVariables.getProperty("api.user.username");
+    private final String USER_PASSWORD = environmentVariables.getProperty("api.user.password");
+    private final String ADMIN = environmentVariables.getProperty("api.admin.username");
+    private final String ADMIN_PASSWORD = environmentVariables.getProperty("api.admin.password");
     private final int bookID = HookDefinitions.getCreatedBookIDForUpdate();
 
     @When("I send a PUT request to update a book")
@@ -26,7 +33,7 @@ public class UpdateAllBooksStepDefinitions {
         response = requestSpecification.when()
                 .header("Content-Type", "application/json")
                 .body(requestBody.formatted(bookID))
-                .put("/books/" + bookID);
+                .put("api/books/" + bookID);
     }
 
     @When("I send a PUT request to update a book with missing mandatory fields")
@@ -40,7 +47,7 @@ public class UpdateAllBooksStepDefinitions {
         response = requestSpecification.when()
                 .header("Content-Type", "application/json")
                 .body(requestBody.formatted(bookID))
-                .put("/books/" + bookID);
+                .put("api/books/" + bookID);
     }
 
     @Then("the response status code should be {int}")
@@ -54,7 +61,7 @@ public class UpdateAllBooksStepDefinitions {
         requestSpecification = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
-                .basic("admin", "password")
+                .basic(ADMIN, ADMIN_PASSWORD)
         ;
     }
 
@@ -63,7 +70,7 @@ public class UpdateAllBooksStepDefinitions {
         requestSpecification = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
-                .basic("user", "password")
+                .basic(USER, USER_PASSWORD)
         ;
     }
 
@@ -79,7 +86,7 @@ public class UpdateAllBooksStepDefinitions {
         response = requestSpecification.when()
                 .header("Content-Type", "application/json")
                 .body(requestBody.formatted(bookID))
-                .put("/books/" + bookID);
+                .put("api/books/" + bookID);
     }
 }
 

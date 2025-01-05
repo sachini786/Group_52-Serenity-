@@ -3,6 +3,8 @@ package org.example.stepdefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.example.actions.CommonAction;
 import org.example.actions.LoginAction;
 import org.example.actions.NavigationAction;
@@ -15,6 +17,9 @@ public class PIMStepDefinitions {
     LoginAction loginAction;
     CommonAction commonAction;
     PIMAction pimAction;
+    private final EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+    private final String ADMIN = environmentVariables.getProperty("login.username");
+    private final String ADMIN_PASSWORD = environmentVariables.getProperty("login.password");
 
 
     @Then("user expect redirection to PIM section")
@@ -53,7 +58,7 @@ public class PIMStepDefinitions {
     @Given("user is in PIM page wants to search for employee")
     public void userIsInPIMPageWantsToSearchForEmployee() {
         navigateAction.toOrangeHRMLoginPage();
-        loginAction.loginWithUsernameAndPassword("Admin", "admin123");
+        loginAction.loginWithUsernameAndPassword(ADMIN, ADMIN_PASSWORD);
         assertThat(commonAction.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
         userClickInPIMInSidebar();
 

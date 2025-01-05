@@ -5,9 +5,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.mapper.ObjectMapperType;
-import io.restassured.specification.RequestSpecification;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.rest.SerenityRest;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.example.models.Book;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -17,7 +19,12 @@ public class GetBookByIDStepDefinitions {
     private Response response;
     private int createBookId;
     private RequestSpecification requestSpecification;
-    private static final String BASE_URL = "http://localhost:7081/";
+    private final EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+    private final String BASE_URL = environmentVariables.getProperty("api.baseurl");
+    private final String USER = environmentVariables.getProperty("api.user.username");
+    private final String USER_PASSWORD = environmentVariables.getProperty("api.user.password");
+    private final String ADMIN = environmentVariables.getProperty("api.admin.username");
+    private final String ADMIN_PASSWORD = environmentVariables.getProperty("api.admin.password");
 
     @Given("user authenticate using by {string} and {string} wants to retrieve the book with valid ID")
     public void userUsernameAndPassword(String username, String password) {
@@ -29,45 +36,45 @@ public class GetBookByIDStepDefinitions {
 
     @Given("admin user wants to get book the ID is valid")
     public void adminUserWantsToGetBookWithValidID() {
-        userUsernameAndPassword("admin", "password");
+        userUsernameAndPassword(ADMIN, ADMIN_PASSWORD);
     }
 
     @Given("regular user wants to get book the ID is valid")
     public void regularUserWantsToGetBookWithValidID() {
-        userUsernameAndPassword("user", "password");
+        userUsernameAndPassword(USER, USER_PASSWORD);
     }
 
     @Given("admin user wants to get a non-existent book")
     public void adminUserWantsToGetNonExistentBook() {
-        userUsernameAndPassword("admin", "password");
+        userUsernameAndPassword(ADMIN, ADMIN_PASSWORD);
     }
 
     @Given("regular user wants to get a non-existent book")
     public void regularUserWantsToGetNonExistentBook() {
-        userUsernameAndPassword("user", "password");
+        userUsernameAndPassword(USER, USER_PASSWORD);
     }
 
     @Given("admin user wants to get a book with an invalid ID")
     public void adminUserWantsToGetBookWithInvalidID() {
-        userUsernameAndPassword("admin", "password");
+        userUsernameAndPassword(ADMIN, ADMIN_PASSWORD);
     }
 
     @Given("regular user wants to get a book with an invalid ID")
     public void regularUserWantsToGetBookWithInvalidID() {
-        userUsernameAndPassword("user", "password");
+        userUsernameAndPassword(USER, USER_PASSWORD);
     }
 
     @Given("the book exists")
     public void hasBooks() {
-        userUsernameAndPassword("admin","password");
-        final String REQUEST_BODY= """
+        userUsernameAndPassword(ADMIN, ADMIN_PASSWORD);
+        final String REQUEST_BODY = """
                     {
                         "title": "Harry Potter",
                         "author": "JK Rolling"
                     }
                 """;
 
-        createBookId= requestSpecification
+        createBookId = requestSpecification
                 .body(REQUEST_BODY)
                 .header("Content-Type", "application/json")
                 .post("/api/books").getBody().as(Book.class, ObjectMapperType.JACKSON_2).id();
@@ -76,14 +83,14 @@ public class GetBookByIDStepDefinitions {
 
     @After("@ValidIdFormat-Admin")
     public void afterBooksExistScenario1() {
-        userUsernameAndPassword("user", "password");
+        userUsernameAndPassword(USER, USER_PASSWORD);
         requestSpecification.when()
                 .delete("/api/books/" + createBookId);
     }
 
     @After("@ValidIdFormat-RegularUser")
     public void afterBooksExistScenario2() {
-        userUsernameAndPassword("user", "password");
+        userUsernameAndPassword(USER, USER_PASSWORD);
         requestSpecification.when()
                 .delete("/api/books/" + createBookId);
     }

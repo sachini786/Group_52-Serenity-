@@ -8,6 +8,8 @@ import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.rest.SerenityRest;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.example.models.Book;
 import org.hamcrest.Matchers;
 
@@ -17,7 +19,10 @@ public class GetAllBooksStepDefinitions {
     private Response response;
     private int createBookId;
     private RequestSpecification requestSpecification;
-    private static final String BASE_URL = "http://localhost:7081/";
+    private final EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+    private final String BASE_URL = environmentVariables.getProperty("api.baseurl");
+    private final String USER = environmentVariables.getProperty("api.user.username");
+    private final String USER_PASSWORD = environmentVariables.getProperty("api.user.password");
 
     @Given("user authenticate using by {string} and {string} wants to get all books")
     public void authenticatedUserWantsToGetAllBooks(String username, String password) {
@@ -29,7 +34,7 @@ public class GetAllBooksStepDefinitions {
 
     @Given("user want to get all books when there are no books available")
     public void userWantToGetAllBooksWhenThereAreNoBooksAvailable() {
-        authenticatedUserWantsToGetAllBooks("user", "password");
+        authenticatedUserWantsToGetAllBooks(USER, USER_PASSWORD);
         userCallServiceToGetAllBooks();
 
         Book[] allBooksAvailable = response.getBody().as(Book[].class, ObjectMapperType.JACKSON_2);
@@ -62,7 +67,7 @@ public class GetAllBooksStepDefinitions {
 
     @Given("user want to get all books when there are books available")
     public void userWantToGetAllBooksThereAreBooksAvailable() {
-        authenticatedUserWantsToGetAllBooks("user", "password");
+        authenticatedUserWantsToGetAllBooks(USER, USER_PASSWORD);
         final String REQUEST_BODY = """
                     {
                         "title": "Harry Potter",

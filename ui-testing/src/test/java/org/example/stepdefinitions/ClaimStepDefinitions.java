@@ -3,6 +3,8 @@ package org.example.stepdefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.example.actions.ClaimAction;
 import org.example.actions.CommonAction;
 import org.example.actions.LoginAction;
@@ -15,11 +17,14 @@ public class ClaimStepDefinitions {
     LoginAction loginAction;
     CommonAction commonAction;
     ClaimAction claimAction;
+    private final EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+    private final String ADMIN = environmentVariables.getProperty("login.username");
+    private final String ADMIN_PASSWORD = environmentVariables.getProperty("login.password");
 
     @Given("user is in dashboard")
     public void userIsInDashboard() {
         navigateAction.toOrangeHRMLoginPage();
-        loginAction.loginWithUsernameAndPassword("Admin", "admin123");
+        loginAction.loginWithUsernameAndPassword(ADMIN, ADMIN_PASSWORD);
         assertThat(commonAction.getUrl()).isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
     }
 

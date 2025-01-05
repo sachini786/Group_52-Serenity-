@@ -4,6 +4,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.example.actions.AdminAction;
 import org.example.actions.CommonAction;
 import org.example.actions.LoginAction;
@@ -16,11 +18,14 @@ public class AdminStepDefinitions {
     LoginAction loginAction;
     CommonAction commonAction;
     AdminAction adminAction;
+    private final EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+    private final String ADMIN = environmentVariables.getProperty("login.username");
+    private final String ADMIN_PASSWORD = environmentVariables.getProperty("login.password");
 
     @Given("user in dashboard need to navigate to admin page")
     public void userInDashboardNeedToNavigateToAdminPage() {
         navigateAction.toOrangeHRMLoginPage();
-        loginAction.loginWithUsernameAndPassword("Admin", "admin123");
+        loginAction.loginWithUsernameAndPassword(ADMIN, ADMIN_PASSWORD);
         assertThat(commonAction.getUrl())
                 .as("User should be redirected to dashboard")
                 .isEqualTo("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
