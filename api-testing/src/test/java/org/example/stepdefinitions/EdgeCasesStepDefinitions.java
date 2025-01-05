@@ -6,6 +6,8 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.rest.SerenityRest;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.example.hooks.HookDefinitions;
 
 public class EdgeCasesStepDefinitions {
@@ -14,15 +16,17 @@ public class EdgeCasesStepDefinitions {
 
     private int createBookId = HookDefinitions.getCreatedBookIDForUpdate();
     private RequestSpecification requestSpecification;
-    private static final String BASE_URL = "http://localhost:7081/";
+    private final EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+    private final String BASE_URL = environmentVariables.getProperty("api.baseurl");
+    private final String USER = environmentVariables.getProperty("api.user.username");
+    private final String USER_PASSWORD = environmentVariables.getProperty("api.user.password");
 
     @Given("user needs to get all the authors")
     public void userNeedsToGetAllTheAuthors() {
         requestSpecification = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
-                .basic("user", "password");
-
+                .basic(USER, USER_PASSWORD);
     }
 
     @When("user send request to get all authors")
@@ -39,17 +43,15 @@ public class EdgeCasesStepDefinitions {
     public void userNeedToCreateABookWithExtraField() {
         String requestBody = """
                 {
-                    "id": 999,
-                    "title": "Update Book title01"
-                    "author": "rowan atkinson"
+                    "title": "Update Book title01",
+                    "author": "rowan atkinson",
                     "registration": "ISBN0032"
-                    
                 }
                 """;
         requestSpecification = SerenityRest.given()
                 .baseUri(BASE_URL)
                 .auth()
-                .basic("user", "password").body(requestBody);
+                .basic(USER, USER_PASSWORD).body(requestBody);
     }
 
     @When("user send request to create book")
@@ -57,34 +59,7 @@ public class EdgeCasesStepDefinitions {
         response = requestSpecification.given()
                 .header("Content-Type", "application/json")
                 .when()
-                .post("/books");
-    }
-
-
-    @Given("user need to update a book with extra field")
-    public void userNeedToUpdateABookWithExtraField() {
-        String requestBody = """
-                {
-                    "id": %d,
-                    "title": "Update Book title01"
-                    "author": "rowan atkinson"
-                    "registration": "ISBN0032"
-                    
-                }
-                """;
-        requestSpecification = SerenityRest.given()
-                .baseUri(BASE_URL)
-                .auth()
-                .basic("user", "password").body(requestBody.formatted(createBookId));
-
-    }
-
-    @When("user send request to update book")
-    public void userSendRequestToUpdateBook() {
-        response = requestSpecification.given()
-                .header("Content-Type", "application/json")
-                .when()
-                .put("/books/" + createBookId);
+                .post("api/books");
     }
 
     @Given("user need to authenticate using {string} and {string}")

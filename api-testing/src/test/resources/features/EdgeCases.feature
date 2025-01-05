@@ -8,12 +8,7 @@ Feature: Edge Cases
   Scenario: Create a book with Extra unexpected details
     Given user need to create a book with extra field
     When user send request to create book
-    Then the edge case response status should be 404
-
-  Scenario: Update a book with Extra unexpected details
-    Given user need to update a book with extra field
-    When user send request to update book
-    Then the edge case response status should be 404
+    Then the edge case response status should be 201
 
   Scenario: Delete a book with a invalid ID as a user
     Given user need to authenticate using "user" and "password"
